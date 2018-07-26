@@ -7,6 +7,7 @@ global.include = require('./paths')
 
 //app.use('/assets', require("./assets/assets"));
 app.use('/login', require(global.include.controller.login.routes));
+app.use('/server', require(global.include.controller.server.routes));
 
 db.connect(function(err) {
   if (err) {

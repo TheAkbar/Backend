@@ -14,13 +14,20 @@ module.exports = {
 	model: {
 		user: path.resolve(modelDir + '/user'),
 		facebook_user: path.resolve(modelDir + '/facebook_user'),
-		auth_token: path.resolve(modelDir + '/auth_token')
+		auth_token: path.resolve(modelDir + '/auth_token'),
+		server: path.resolve(modelDir + '/server'),
+		server_user: path.resolve(modelDir + '/server_user')
 	},
 
 	controller: {
 		login: {
 			controller: path.resolve(controllerDir + '/login/login'),
 			routes: path.resolve(controllerDir + '/login/login_routes')
+		},
+
+		server: {
+			controller: path.resolve(controllerDir + '/server/server'),
+			routes: path.resolve(controllerDir + '/server/server_routes')
 		}
 	},
 
