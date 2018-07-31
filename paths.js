@@ -9,7 +9,9 @@ let helperDir = path.resolve(__dirname + "/app/helpers");
 
 
 module.exports = {
-	db: dbDir,
+    db: dbDir,
+
+    storage_config: rootDir + '/storage.config',
 
 	model: {
 		user: path.resolve(modelDir + '/user'),
@@ -28,7 +30,11 @@ module.exports = {
 		server: {
 			controller: path.resolve(controllerDir + '/server/server'),
 			routes: path.resolve(controllerDir + '/server/server_routes')
-		}
+		},
+	    file: {
+		controller: path.resolve(controllerDir + '/file/file'),
+		routes: path.resolve(controllerDir + '/file/file_routes')
+	    }
 	},
 
 	helper: {

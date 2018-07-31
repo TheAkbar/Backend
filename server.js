@@ -5,9 +5,9 @@ var db = require('./db');
 
 global.include = require('./paths')
 
-//app.use('/assets', require("./assets/assets"));
 app.use('/login', require(global.include.controller.login.routes));
 app.use('/server', require(global.include.controller.server.routes));
+app.use('/file', require(global.include.controller.file.routes));
 
 db.connect(function(err) {
   if (err) {

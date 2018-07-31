@@ -7,7 +7,7 @@ const await = require('asyncawait/await');
 var auth_token = function(sql_result){
   this.token = sql_result.token;
   this.user_id = sql_result.user_id;
-  this.expired = sql_result.expired == 1? true : false;
+  this.expired = sql_result.expired == 1? false : true;
   this.get_user = async function(){
     return await user.get_by_id(this.user_id);
   }
@@ -19,7 +19,7 @@ var get_by_token = function(token){
     values = [token];
     db.get().query("SELECT * FROM auth_tokens WHERE token=?", values, function(err, result){
       if(err) return reject(err);
-      if(result.length === 0) return resolve(null);
+      if(result.length == 0) return resolve(null);
       return resolve(auth_token(result[0]));
     })
   });
@@ -30,8 +30,8 @@ var create = function(user){
   return new Promise(function(resolve, reject){
     values = [token, user.id];
     db.get().query("INSERT INTO auth_tokens (token, user_id) VALUES (?,?)", values, function(err,result){
-      if(err) reject(err);
-      resolve(get_by_token(token));
+      if(err) return reject(err);
+      return resolve(get_by_token(token));
     });
   });
 }

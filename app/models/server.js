@@ -10,13 +10,7 @@ var server = function(sql_result){
 	this.id = sql_result.id; // auto increment
 	this.name = sql_result.name;
 	this.code = sql_result.code;
-	if(sql_result.active === 1){
-		this.active = true;
-	}
-	else {
-		this.active = false;
-	}
-	//this.active = sql_result.active;
+	this.active = sql_result.active == 1? true : false;
 	this.created_at = timestamp.timestamp_to_date(sql_result.created_at);
 	this.created_by = sql_result.created_by;
 
@@ -27,7 +21,7 @@ var get_by_code = function(code){
 	return new Promise(function(resolve,reject){
 		values = [code];
 		db.get().query('SELECT * FROM server WHERE code=?', values, function(err,result){
-			
+
 			if(err){
 				return reject(err);
 			}
@@ -36,7 +30,7 @@ var get_by_code = function(code){
 			}
 			//resolve with server
 			return resolve(server(result[0]));
-			
+
 		});
 	});
 }
