@@ -6,8 +6,8 @@ var db = require('./db');
 global.include = require('./paths')
 
 app.use('/login', require(global.include.controller.login.routes));
-app.use('/server', require(global.include.controller.server.routes));
 app.use('/file', require(global.include.controller.file.routes));
+app.use('/server', require(global.include.controller.server.routes));
 
 db.connect(function(err) {
   if (err) {
